@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/jayzes/cucumber-api-steps
+  revision: 190d0930c0d7e9578460ab3730e5bc58d3b72f5a
+  specs:
+    cucumber-api-steps (0.13)
+      cucumber (>= 2.0.2)
+      jsonpath (>= 0.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -46,15 +54,15 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
-    autoprefixer-rails (7.1.4.1)
+    autoprefixer-rails (7.1.5)
       execjs
     backports (3.10.3)
     bcrypt (3.1.11)
     bindex (0.5.0)
-    bootstrap (4.0.0.beta)
+    bootstrap (4.0.0.beta2)
       autoprefixer-rails (>= 6.0.3)
-      popper_js (~> 1.11.1)
-      sass (>= 3.4.19)
+      popper_js (>= 1.12.3, < 2)
+      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.15.4)
@@ -109,7 +117,7 @@ GEM
     diff-lcs (1.3)
     erubi (1.7.0)
     execjs (2.7.0)
-    factory_girl (4.8.1)
+    factory_girl (4.8.2)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
@@ -130,6 +138,13 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jsonapi-renderer (0.1.3)
+    jsonpath (0.8.8)
+      multi_json
+    jwt (1.5.6)
+    knock (2.1.1)
+      bcrypt (~> 3.1)
+      jwt (~> 1.5)
+      rails (>= 4.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -153,7 +168,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pg (0.21.0)
-    popper_js (1.11.1)
+    popper_js (1.12.5)
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
@@ -191,27 +206,27 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rspec (3.6.0)
-      rspec-core (~> 3.6.0)
-      rspec-expectations (~> 3.6.0)
-      rspec-mocks (~> 3.6.0)
-    rspec-core (3.6.0)
-      rspec-support (~> 3.6.0)
-    rspec-expectations (3.6.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.6.0)
-    rspec-mocks (3.6.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.6.0)
-    rspec-rails (3.6.1)
+      rspec-support (~> 3.7.0)
+    rspec-rails (3.7.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 3.6.0)
-      rspec-expectations (~> 3.6.0)
-      rspec-mocks (~> 3.6.0)
-      rspec-support (~> 3.6.0)
-    rspec-support (3.6.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.2)
@@ -253,7 +268,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
-    versionist (1.6.0)
+    versionist (1.6.1)
       activesupport (>= 3)
       railties (>= 3)
       yard (~> 0.7)
@@ -264,7 +279,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (3.0.1)
+    webpacker (3.0.2)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
@@ -284,13 +299,16 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  cucumber-api-steps!
   cucumber-rails
   database_cleaner
   devise
-  factory_girl_rails (~> 4.0)
+  factory_girl
+  factory_girl_rails (= 4.8.0)
   faker
   jbuilder (~> 2.5)
   jquery-rails
+  knock
   listen (>= 3.0.5, < 3.2)
   pg
   puma (~> 3.7)

@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    email = Faker::Internet.email
-    email { email }
-    password { email }
+    email { Faker::Internet.email }
+    password { "HAXXOR123" }
   end
 end

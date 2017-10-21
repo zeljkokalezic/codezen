@@ -6,14 +6,14 @@ git_source(:github) do |repo_name|
 end
 
 
-
 gem 'devise'
+gem 'knock'
+
 gem 'bootstrap'
 gem 'jquery-rails'
+
 gem 'versionist'
 gem 'active_model_serializers'
-
-
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -56,12 +56,14 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_girl'
+  gem 'factory_girl_rails', '= 4.8.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
   gem 'database_cleaner'
-  gem 'cucumber-rails', require: false
-  gem 'selenium-webdriver'
+  gem 'cucumber-rails', :require => false
+  #gem 'cucumber-api', git: 'https://github.com/hidroh/cucumber-api'
+  gem 'cucumber-api-steps', :require => false, git: 'https://github.com/jayzes/cucumber-api-steps'
 end
 
 group :development do
