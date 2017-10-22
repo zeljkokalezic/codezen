@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :problems
 
   api_version(:module => "V1", :path => {:value => "v1"}) do
-    resources :problems
+    resources :problems do
+      post 'execute'
+    end
   end
 
   devise_for :users

@@ -1,5 +1,5 @@
 class V1::ProblemsController < V1::BaseController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :set_problem, only: [:show, :edit, :update, :destroy, :execute]
 
   def index
     json_response(Problem.all)
@@ -36,10 +36,21 @@ class V1::ProblemsController < V1::BaseController
     end
   end
 
+  def execute
+    if @problem.present?
+      #user will receive the result trough action cable
+      ActionCable.server.broadcast "test#{@problem.id}#{current_user.id}", message: "Execution request received. Processing..."
+      TestRunner.new.run(@problem, current_user, params[:code], params[:code_input])
+      head :no_content
+    else
+      head :not_found
+    end
+  end
+
   private
 
   def set_problem
-    @problem = Problem.find_by_id(params[:id])
+    @problem = Problem.find_by_id(params[:id] || params[:problem_id])
   end
 
   def problem_params

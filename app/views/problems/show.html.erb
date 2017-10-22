@@ -1,3 +1,80 @@
+<% content_for :extra_js do %>
+  <script>
+      //global variable are bad, mmm kay
+      var testId =  '<%= "#{@problem.id}"%>';
+      var userId =  '<%= "#{current_user.id}"%>';
+      $(document).ready(function() {
+        $( "#execute-code" ).click(function() {
+          $('#code_result').val("Commencing execution...");
+
+          $.ajax({
+            url: '<%= "#{v1_problem_path(@problem.id)}/execute"%>',
+            type: 'POST',
+            data: {
+              'code' : $('#code').val(),
+              'code_input' : $('#code_input').val(),
+            },
+            headers: { 'Authorization': 'Bearer <%= @api_token %>' },
+            success: function(result) {
+            },
+            error: function (result) {
+            },
+          });
+        });
+      });
+  </script>
+  <%= javascript_include_tag "channels/test_channel" %>
+<% end %>
+
+
 <div id="container">
-  <h3 class="ml-3">Problem Details for: <%= "#{@problem.function_name}"%></h3>
+  <h3 class="">Problem Details for: <%= "#{@problem.function_name}"%></h3>
+  <hr>
+
+  <div class="row ml-2">
+    <div class="col-sm-4">
+      <label >
+        <strong>Task:</strong>
+        <%= @problem.text %>
+      </label>
+      <br/>
+      <label >
+        <strong>Function name:</strong>
+        <%= @problem.function_name %>
+      </label>
+      <br/>
+      <label>
+        <strong>Language:</strong>
+        <%= @problem.language.descriptor %>
+      </label>
+    </div>
+  </div>
+
+  <br/>
+  <h3>Playground</h3>
+  <hr>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Solution:</label>
+    <div class="col-10">
+        <textarea id="code" class="form-control" rows="10" cols="50" required><%= "#{@problem.setup}"%></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Input:</label>
+    <div class="col-10">
+      <input id="code_input" class="form-control" type="text" required>
+    </div>
+  </div>
+
+  <button id="execute-code" class="btn btn-success">Execute</button>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Result:</label>
+    <div class="col-10">
+        <textarea id="code_result" class="form-control" rows="10" cols="50" readonly>
+        </textarea>
+    </div>
+  </div>
 </div>

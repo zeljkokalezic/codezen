@@ -15,6 +15,8 @@ gem 'jquery-rails'
 gem 'versionist'
 gem 'active_model_serializers'
 
+gem 'delayed_job_active_record'
+gem 'rest-client'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
