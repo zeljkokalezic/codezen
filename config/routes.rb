@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root to: "home#index"
+  root to: "problems#index"
   post 'user_token' => 'user_token#create'
-  
+  get "problems/:id/solve" => 'problems#solve', :as => :solve_problem
 end

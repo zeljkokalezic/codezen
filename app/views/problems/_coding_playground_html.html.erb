@@ -1,0 +1,32 @@
+<br/>
+<h3>Playground</h3>
+<hr>
+
+<div class="form-group row">
+  <label class="col-2 col-form-label">Solution:</label>
+  <div class="col-10">
+    <textarea id="code" class="form-control" rows="10" cols="50" required><%= "#{@problem.setup}"%></textarea>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-2 col-form-label">Input:</label>
+  <div class="col-10">
+    <input id="code_input" class="form-control" type="text" required>
+  </div>
+</div>
+
+<button id="execute-code" class="btn btn-success">Execute</button>
+
+<div class="form-group row">
+  <label class="col-2 col-form-label">Result:</label>
+  <div class="col-10">
+        <textarea id="code_result" class="form-control" rows="10" cols="50" readonly>
+        </textarea>
+  </div>
+</div>
+
+<div class="text-center">
+  <button id="solve-problem" class="btn btn-danger">Submit Solution</button>
+</div>
+

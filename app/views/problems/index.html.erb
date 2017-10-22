@@ -9,7 +9,7 @@
           getDataUrl: "#{v1_problems_path}?user_id=#{current_user.id}",
           resourceUrl: v1_problem_path(-1),
           userId: current_user.id,
-          columns: ['language_id', 'text','solution','setup','function_name', 'actions'],
+          columns: ['language_id', 'text','setup','function_name', 'test_cases', 'actions'],
           authToken: "#{@api_token}"
       }.to_json
   }%>

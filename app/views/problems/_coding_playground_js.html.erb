@@ -1,0 +1,27 @@
+<% content_for :extra_js do %>
+    <script>
+      //global variable are bad, mmm kay
+      var testId =  '<%= "#{@problem.id}"%>';
+      var userId =  '<%= "#{current_user.id}"%>';
+      $(document).ready(function() {
+        $( "#execute-code" ).click(function() {
+          $('#code_result').val("Commencing execution...");
+
+          $.ajax({
+            url: '<%= "#{v1_problem_path(@problem.id)}/execute"%>',
+            type: 'POST',
+            data: {
+              'code' : $('#code').val(),
+              'code_input' : $('#code_input').val(),
+            },
+            headers: { 'Authorization': 'Bearer <%= @api_token %>' },
+            success: function(result) {
+            },
+            error: function (result) {
+            },
+          });
+        });
+      });
+    </script>
+    <%= javascript_include_tag "channels/test_channel" %>
+<% end %>

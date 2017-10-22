@@ -54,6 +54,6 @@ class V1::ProblemsController < V1::BaseController
   end
 
   def problem_params
-    params.permit(:text, :user_id, :language_id, :function_name, :setup)
+    params.permit(:text, :user_id, :language_id, :function_name, :setup, :test_cases)
   end
 end

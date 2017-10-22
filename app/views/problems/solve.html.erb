@@ -1,3 +1,6 @@
+<%= render :partial => 'coding_playground_js' %>
+
+
 <div id="container">
   <h3 class="">Problem Details for: <%= "#{@problem.function_name}"%></h3>
   <hr>
@@ -21,7 +24,5 @@
     </div>
   </div>
 
-  <div class="text-center">
-    <a href="<%= solve_problem_path(@problem.id) %>" class="btn btn-lg btn-success">Solve</a>
-  </div>
+  <%= render :partial => 'coding_playground_html' %>
 </div>
