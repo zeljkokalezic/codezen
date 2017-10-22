@@ -24,4 +24,45 @@
   <div class="text-center">
     <a href="<%= solve_problem_path(@problem.id) %>" class="btn btn-lg btn-success">Solve</a>
   </div>
+
+  <h3 class="">Problem solutions:</h3>
+  <hr>
+
+  <table class="table mt-2">
+    <thead>
+    <tr>
+      <th>
+        Status
+      </th>
+      <th>
+        Code
+      </th>
+      <th>
+        Score
+      </th>
+      <th>
+        User
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @problem.solutions.each do |solution| -%>
+        <tr>
+          <td>
+            <div><strong><%= solution.status == 1 ? "Sucess" : "Failure" %><strong/></div>
+          </td>
+          <td>
+            <div><%= solution.code %></div>
+          </td>
+          <td>
+            <div><%= solution.score %></div>
+          </td>
+          <td>
+            <div><%= solution.user.email %></div>
+          </td>
+        </tr>
+    <% end -%>
+    </tbody>
+  </table>
+
 </div>

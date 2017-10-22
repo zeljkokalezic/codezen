@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171022202538) do
+ActiveRecord::Schema.define(version: 20171022212052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(version: 20171022202538) do
     t.index ["user_id"], name: "index_problems_on_user_id"
   end
 
+  create_table "solutions", force: :cascade do |t|
+    t.bigint "problem_id"
+    t.bigint "user_id"
+    t.integer "status"
+    t.text "code"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["problem_id"], name: "index_solutions_on_problem_id"
+    t.index ["user_id"], name: "index_solutions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,4 +82,6 @@ ActiveRecord::Schema.define(version: 20171022202538) do
 
   add_foreign_key "problems", "languages"
   add_foreign_key "problems", "users"
+  add_foreign_key "solutions", "problems"
+  add_foreign_key "solutions", "users"
 end
