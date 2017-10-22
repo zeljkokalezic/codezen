@@ -5,4 +5,5 @@ RSpec.describe Language, type: :model do
 
   it { should validate_presence_of(:descriptor) }
   it { should validate_presence_of(:service_url) }
+  it { should validate_presence_of(:auth_token) }
 end
