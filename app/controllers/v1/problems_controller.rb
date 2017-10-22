@@ -1,5 +1,5 @@
 class V1::ProblemsController < V1::BaseController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy, :execute]
+  before_action :set_problem, only: [:show, :edit, :update, :destroy, :execute, :submit]
 
   def index
     json_response(Problem.all)
@@ -41,6 +41,17 @@ class V1::ProblemsController < V1::BaseController
       #user will receive the result trough action cable
       ActionCable.server.broadcast "test#{@problem.id}#{current_user.id}", message: "Execution request received. Processing..."
       TestRunner.new.run(@problem, current_user, params[:code], params[:code_input])
+      head :no_content
+    else
+      head :not_found
+    end
+  end
+
+  def submit
+    if @problem.present?
+      #user will receive the result trough action cable
+      ActionCable.server.broadcast "test#{@problem.id}#{current_user.id}", message: "Submit request received. Processing..."
+      TestRunner.new.submit_run(@problem, current_user, params[:code], params[:code_input])
       head :no_content
     else
       head :not_found

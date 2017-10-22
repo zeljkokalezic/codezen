@@ -3,6 +3,11 @@ require 'rest-client'
 class TestRunner
 
   def run(problem, user, code, input)
+    run_status = {
+        :passed => false,
+        :score => 0
+    }
+
     params = {
         :function => Base64.encode64(code),
         :function_name => problem.function_name,
@@ -15,6 +20,10 @@ class TestRunner
     send_status_message(problem, user, "Executed. Result is: #{response}")
 
     send_status_message(problem, user, "Executing test cases...")
+
+    passed_test_cases = 0
+    total_test_cases = problem.test_cases.each_line.count
+
     problem.test_cases.each_line do |test_case|
       test_case.strip!
 
@@ -32,6 +41,7 @@ class TestRunner
 
         if response.to_s == output.to_s
           send_status_message(problem, user, "Test case passed: #{test_case}")
+          passed_test_cases += 1
         else
           send_status_message(problem, user, "Test case failed: #{test_case}")
         end
@@ -41,8 +51,26 @@ class TestRunner
     end
 
     send_status_message(problem, user, "Execution finished.")
+
+    run_status[:passed] = passed_test_cases == total_test_cases
+    run_status[:score] = passed_test_cases.to_f / total_test_cases * 100 rescue 0
+
+    run_status
   end
   handle_asynchronously :run, :priority => 0
+
+  def submit_run(problem, user, code, input)
+    run_status = run_without_delay(problem, user, code, input)
+
+    send_status_message(problem, user, "Saving solution...")
+    solution = Solution.new(:user => user, :code => code, :problem => problem, :status => run_status[:passed] ? 1 : 0, :score => run_status[:score])
+    if solution.save
+      send_status_message(problem, user, "Solution saved:#{solution.to_json}")
+    else
+      send_status_message(problem, user, "Unable to save solution: #{solution.to_json}")
+    end
+  end
+  handle_asynchronously :submit_run, :priority => 0
 
   private
 

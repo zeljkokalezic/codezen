@@ -21,6 +21,24 @@
             },
           });
         });
+
+        $( "#solve-problem" ).click(function() {
+          $('#code_result').val("Problem submitted, tests will be executed...");
+
+          $.ajax({
+            url: '<%= "#{v1_problem_path(@problem.id)}/submit"%>',
+            type: 'POST',
+            data: {
+              'code' : $('#code').val(),
+            },
+            headers: { 'Authorization': 'Bearer <%= @api_token %>' },
+            success: function(result) {
+            },
+            error: function (result) {
+            },
+          });
+        });
+
       });
     </script>
     <%= javascript_include_tag "channels/test_channel" %>
