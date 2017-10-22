@@ -1,0 +1,31 @@
+<div class="form-group row">
+  <label class="col-2 col-form-label">Language:</label>
+  <div class="col-10">
+    <select name="languages" class="form-control" v-model="formData.language_id">
+      <option value="1">C</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-2 col-form-label">Text:</label>
+  <div class="col-10">
+        <textarea name="text" class="form-control" v-model="formData.text" required>
+    </textarea>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-2 col-form-label">Setup:</label>
+  <div class="col-10">
+    <textarea name="setup" class="form-control" v-model="formData.setup" required>
+    </textarea>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-2 col-form-label">Function Name:</label>
+  <div class="col-10">
+    <input name="function_name" class="form-control" type="text" v-model="formData.function_name" required>
+  </div>
+</div>

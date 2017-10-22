@@ -64,6 +64,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   #gem 'cucumber-api', git: 'https://github.com/hidroh/cucumber-api'
   gem 'cucumber-api-steps', :require => false, git: 'https://github.com/jayzes/cucumber-api-steps'
+  gem 'geckodriver-helper'
 end
 
 group :development do
